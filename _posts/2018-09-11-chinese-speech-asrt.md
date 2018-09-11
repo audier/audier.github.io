@@ -8,6 +8,7 @@ header-img: img/home-bg-pic.jpg 	#这篇文章标题背景图片
 catalog: true 						# 是否归档
 tags:								#标签
     - 语音识别
+    - 深度学习
 ---
 
 ## 概述
@@ -43,7 +44,7 @@ tags:								#标签
 网络结构如下：
 *该结构没有真正使用，只是一个基本框架，类似于helloworld，用于作为示例。*
 
-```python
+```markdown
 def creatModel():
 	input_data = Input(name='the_input', shape=(500, 26))
 	layer_h1 = Dense(512, activation="relu", use_bias=True, kernel_initializer='he_normal')(input_data)
@@ -84,7 +85,7 @@ def creatModel():
 该模型在`cnn_witch_fbank.py`和`cnn_ctc_am.py`中，实验中是所有网络结果最好的模型，目前能够取得较好的泛化能力，声学模型识别率能够达到90%以上，其网络结构如下：
 ![DFCNN](https://img-blog.csdn.net/20180909134150983?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-```python
+```markdown
 def creatModel():
 	input_data = Input(name='the_input', shape=(800, 200, 1))
 	# 800,200,32
@@ -170,7 +171,7 @@ n元语法是一个非常经典的语言模型，这里不过多介绍啦。
 
 项目[基于深度学习的中文语音识别系统](https://github.com/audier/my_ch_speech_recognition)中`language_model/`文件夹中已经默认放置了例子语料，可以通过直接运行`CBHG.py`进行数据预处理、模型训练、和模型测试，下面是我用项目中的默认数据在12G GPU上训练了大概小半天的模型识别结果，如果利用网络爬虫增加数据集，将会有更好的泛化结果。
 
-```bash
+```markdown
 请输入测试拼音：ta1 mei2 you3 duo1 shao3 hao2 yan2 zhuang4 yu3 dan4 ta1 que4 ba3 ai4 qin1 ren2 ai4 jia1 ting2 ai4 zu3 guo2 ai4 jun1 dui4 wan2 mei3 de tong3 yi1 le qi3 lai2
 她没有多少豪言壮语但她却把爱亲人爱家庭爱祖国爱军队完美地统一了起来
 

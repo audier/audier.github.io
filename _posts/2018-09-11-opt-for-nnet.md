@@ -34,7 +34,7 @@ $ b^{[l]} = b^{[l]} - \alpha \text{ } db^{[l]} \tag{2}$
 
 - **批量梯度下降(Batch) Gradient Descent**:
 
-``` python
+``` markdown
 X = data_input
 Y = labels
 parameters = initialize_parameters(layers_dims)
@@ -52,7 +52,7 @@ for i in range(0, num_iterations):
 
 - **随机梯度下降Stochastic Gradient Descent**:
 
-```python
+```markdown
 X = data_input
 Y = labels
 parameters = initialize_parameters(layers_dims)
