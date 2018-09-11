@@ -44,7 +44,7 @@ tags:								#标签
 网络结构如下：
 *该结构没有真正使用，只是一个基本框架，类似于helloworld，用于作为示例。*
 
-```markdown
+```python
 def creatModel():
 	input_data = Input(name='the_input', shape=(500, 26))
 	layer_h1 = Dense(512, activation="relu", use_bias=True, kernel_initializer='he_normal')(input_data)
@@ -85,7 +85,7 @@ def creatModel():
 该模型在`cnn_witch_fbank.py`和`cnn_ctc_am.py`中，实验中是所有网络结果最好的模型，目前能够取得较好的泛化能力，声学模型识别率能够达到90%以上，其网络结构如下：
 ![DFCNN](https://img-blog.csdn.net/20180909134150983?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-```markdown
+```python
 def creatModel():
 	input_data = Input(name='the_input', shape=(800, 200, 1))
 	# 800,200,32
@@ -186,7 +186,9 @@ n元语法是一个非常经典的语言模型，这里不过多介绍啦。
 
 - 数据集
    - 共计约430小时,相关链接：[http://www.openslr.org/resources.php](http://www.openslr.org/resources.php)
-   - st-cmd、primewords、Aishell、thchs30四个数据集，整理为相同格式，放于`some_expriment\data_process\datalist`中。包含了解压后数据的路径，以及训练所需的数据标注格式，其中prime数据没有区分训练集等，为我手工区分。各个数据集的数量（句）如下：
+   - st-cmd、primewords、Aishell、thchs30四个数据集，整理为相同格式，放于`some_expriment\data_process\datalist`中。包含了解压后数据的路径，以及训练所需的数据标注格式，其中prime数据没有区分训练集等，为我手工区分。
+
+各个数据集的数量（句）如下：
    
       |Name | train | dev | test 
       |- | :-: | -: | -:

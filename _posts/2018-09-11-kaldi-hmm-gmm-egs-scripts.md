@@ -14,7 +14,7 @@ tags:								#标签
 
 ## train_mono.sh
 单音素训练脚本：
-```markdown
+```shell
 //初始化，[topo feats] -> [0.mdl tree]
 gmm-init-mono 
 //生成训练图，[0.mdl text l.fst] -> [train.fst]
@@ -40,7 +40,7 @@ final.mdl = $i.mdl
 
 ## train_deltas.sh
 三音素训练脚本：
-```markdown
+```shell
 //特征处理 [feats] -> [feats]
 apply-cmvn | add-deltas
 //由生成的单音素模型的对齐结果对三音素参数统计，用于生成决策树[final.ali feats] -> [treeacc]
@@ -70,7 +70,7 @@ final.mdl = $i.mdl
 
 ## train_lda_mllt.sh
 lda-mllt训练脚本，非说话人自适应，mllt的作用是减少协方差矩阵对角化的损失：
-```markdown
+```shell
 //生成先验概率，统计计算lda所需统计量，[splice-feats final.ali] -> [lda.acc]
 ali-to-post
 weight-silence-post
@@ -112,7 +112,7 @@ final.mdl = $i.mdl
 
 ## train_sat.sh
 说话人自适应模型，fmllr训练脚本：
-```markdown
+```shell
 //生成先验概率，统计计算fmllr所需统计量，[splice-feats spk2utt] -> [trans]
 ali-to-post
 weight-silence-post
