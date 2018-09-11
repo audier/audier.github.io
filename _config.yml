@@ -52,7 +52,8 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
-
+  math_engine: mathjax
+  syntax_highlighter: rouge
 
 
 # 评论系统
