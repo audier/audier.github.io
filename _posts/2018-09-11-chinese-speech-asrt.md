@@ -190,13 +190,13 @@ n元语法是一个非常经典的语言模型，这里不过多介绍啦。
 
 各个数据集的数量（句）如下：
    
-      |Name | train | dev | test 
-      |- | :-: | -: | -:
-      |aishell | 120098| 14326 | 7176
-      |primewords | 40783 | 5046 | 5073
-      |thchs-30 | 10000 | 893 | 2495
-      |st-cmd | 10000 | 600 | 2000
+|Name | train | dev | test 
+|- | :-: | :-: | :-:
+|aishell | 120098| 14326 | 7176
+|primewords | 40783 | 5046 | 5073
+|thchs-30 | 10000 | 893 | 2495
+|st-cmd | 10000 | 600 | 2000
 
 这是目前能找到的所有开源中文语料，如果还有希望大神能够留言提示。
 
-> 转载请注明出处：[https://blog.csdn.net/chinatelecom08/article/details/82557715](https://blog.csdn.net/chinatelecom08/article/details/82557715)
+> [项目地址](https://github.com/audier/my_ch_speech_recognition)
