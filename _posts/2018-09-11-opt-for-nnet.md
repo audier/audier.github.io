@@ -7,7 +7,7 @@ author:     Sun Hongwen                     # 作者
 header-img: img/home-bg-pic.jpg     #这篇文章标题背景图片
 catalog: true                       # 是否归档
 tags:                               #标签
-    - 语音识别
+    - 深度学习
 ---
 
 ## 最优化方法
