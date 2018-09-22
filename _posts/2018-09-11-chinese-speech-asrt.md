@@ -83,7 +83,7 @@ def creatModel():
 由于两个原因在使用GRU作为语音识别的时候我们会遇到问题。一方面是我们常常使用双向循环神经网络才能取得更好的识别效果，这样会影响解码实时性。另一方面随着网络结构复杂性增加，双向GRU的参数是相同节点数全连接层的6倍，这样会导致训练速度非常缓慢。
 科大讯飞提出了一种使用深度卷积神经网络来对时频图进行识别的方法，就是DFCNN，利用CNN参数共享机制，可以将参数数量下降一个级别，且深层次的卷积和池化层能够充分考虑语音信号的上下文信息，且可以在较短的时间内就可以得到识别结果，具有较好的实时性。
 该模型在`cnn_witch_fbank.py`和`cnn_ctc_am.py`中，实验中是所有网络结果最好的模型，目前能够取得较好的泛化能力，声学模型识别率能够达到90%以上，其网络结构如下：
-![DFCNN](https://img-blog.csdn.net/20180909134150983?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![DFCNN](https://github.com/audier/audier.github.io/tree/master/img/dfcnn.jpg)
 
 ```python
 def creatModel():
