@@ -144,7 +144,7 @@ def creatModel():
 
 而前馈记忆神经网络也也解决了双向GRU的参数过多和实时性较差的缺点，它利用一个记忆模块，包含了上下几帧信息，能够得到不输于双向GRU-CTC的识别结果，阿里最新的开源系统就是基于DFSMN的声学模型，只不过在kaldi的框架上实现的。我们将考虑使用DFSMN+CTC的结构在python上实现。该网络后续将实现。
 结构如下：
-![DFSMN](https://raw.githubusercontent.com/audier/audier.github.io/master/img/dfsmn.jpg)
+![DFSMN](https://raw.githubusercontent.com/audier/audier.github.io/master/img/dfsmn.jpeg)
 
 ## 语言模型
 ### n-gram
@@ -159,7 +159,7 @@ n元语法是一个非常经典的语言模型，这里不过多介绍啦。
 模型初始输入是一个随机采样的拼音字母的character embedding，经过一个CBHG的模型，输出是五千个汉字对应的label。
 这里使用的CBHG模块是state-of-art的seq2seq模型，用在Google的机器翻译和语音合成中，该模型放在`language_model/CBHG.py`中，结构如下：
 图片来自 [Tacotron: Towards End-to-End Speech Synthesis](https://arxiv.org/pdf/1703.10135.pdf)
-![CBHG](https://raw.githubusercontent.com/audier/audier.github.io/master/img/cbhg.jpg)
+![CBHG](https://raw.githubusercontent.com/audier/audier.github.io/master/img/cbhg.png)
 
 关于该模型值得注意的几点：
 
