@@ -11,8 +11,6 @@ tags:								#标签
     - python
 ---
 
-
-@[toc](基于HMM-GMM的孤立词识别)
 # 简介
 
 
