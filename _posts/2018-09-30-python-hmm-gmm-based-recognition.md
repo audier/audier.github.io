@@ -1,12 +1,12 @@
 ﻿---
-layout:     post   				    # 使用的布局（不需要改）
-title:      python HMM-GMM孤立词识别   # 标题 
-subtitle:   python hmm-gmm model trainning			#副标题
+layout:     post   				# 使用的布局（不需要改）
+title:      基于HMM-GMM的孤立词识别		    # 标题 
+subtitle:   python hmm-gmm model trainning	#副标题
 date:       2018-09-30 				# 时间
-author:     Sun Hongwen						# 作者
-header-img: img/home-bg-pic.jpg 	#这篇文章标题背景图片
-catalog: true 						# 是否归档
-tags:								#标签
+author:     Sun Hongwen				# 作者
+header-img: img/home-bg-pic.jpg 		#这篇文章标题背景图片
+catalog: true 					# 是否归档
+tags:						#标签
     - 语音识别
     - python
 ---
