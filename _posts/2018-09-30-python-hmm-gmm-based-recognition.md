@@ -62,7 +62,7 @@ def gen_wavlist(wavpath):
 	return wavdict, labeldict
 ```
 查看wavdict和labeldict的数据内容，以test为例，其中音频的类别为文件名后面的数字：
-![数据格式](https://img-blog.csdn.net/20180930091335772?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
 ```py
 wavdict, labeldict = gen_wavlist('test_data')
 print(wavdict, labeldict)
