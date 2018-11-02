@@ -150,7 +150,7 @@ print(len(data))
 我们通常不会将数据一股脑扔到网络中进行训练，而是将数据分为一个batch一个batch的进行训练。
 下面的函数实现了将数据切分为一个个的[batch_size, time_steps]形式，这种数据也是循环神经网络训练中使用的格式。
 通过观察输入数据和输出数据我们发现，输入数据总是比输出数据提前一个time_step。如下图所示：
-![rnnet.jpg](attachment:rnnet.jpg)
+![rnnet](https://raw.githubusercontent.com/audier/audier.github.io/master/img/rnnet.jpg)
 这是因为我们要建立的模型实现的功能是希望通过输入：3001 3472 3811 1021  271 能够成功的预测下一个单词：1644
 
 
@@ -183,9 +183,9 @@ print('input data:', x[0], '\noutput data:', y[0])
 
 ## 4. 模型选择与建模
 我们选择rnn来作为文本生成模型结构如下：
-![rnnet.jpg](attachment:rnnet.jpg)
+![rnnet](https://raw.githubusercontent.com/audier/audier.github.io/master/img/rnnet.jpg)
 我们选择lstm来做为其中的隐藏层：
-![lstm.jpg](attachment:lstm.jpg)
+![rnnet](https://raw.githubusercontent.com/audier/audier.github.io/master/img/lstm.jpg)
 ### 4.1 使用tensorflow进行建模：
 
 
