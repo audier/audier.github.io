@@ -20,16 +20,16 @@ tags:						#标签
 实际上，seq2seq模型和之前的lstm生成小说的模型非常相似，seq2seq多了个encoder端，decoder端只是训练的方法不同，生成输出所需初始化的参数不同。如下图所示：
 - lstm的中文小说生成模型：
 
-![lstm](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm.jpg)
+![lstm](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/lstm.jpg)
 
 - 基于seq2seq的中英文翻译模型：
 
-![seq2seq](https://github.com/audier/audier.github.io/blob/master/img/en2ch/seq2seq.jpg)
+![seq2seq]https://raw.githubusercontent.com/audier/audier.github.io/blob/master/img/en2ch/seq2seq.jpg)
 
 ### 1.2 seq2seq与lstm的区别
 我们可以看出lstm结构上和seq2seq的decoder端结构是一样的。实际上，他们确实是一模一样的，而他们唯一的区别在于两个结构的输入不同。
 
-![lstm](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm.jpg)
+![lstm](https://raw.githubusercontent.com/audier/audier.github.io/blob/master/img/en2ch/lstm.jpg)
 
 - lstm结构：1.state为固定值初始化，2.input为网络的输入
 - seq2seq：2.state为encoder端编码得到的值，2.input为给定的起始输入
@@ -38,7 +38,7 @@ tags:						#标签
 其实从另一种角度看，seq2seq和lstm可以看做完全一样的网络结构，我们既可以把seq2seq看成lstm的演化版本，也可以把lstm看成seq2seq的一部分。
 如果把lstm从中间截断，并修改下一个的输入就能得到seq2seq:
 
-![lstm2seq](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm2seq.jpg)
+![lstm2seq](https://raw.githubusercontent.com/audier/audier.github.io/blob/master/img/en2ch/lstm2seq.jpg)
 
 
 ### 参考文献：
