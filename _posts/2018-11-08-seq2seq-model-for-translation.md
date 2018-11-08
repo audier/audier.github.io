@@ -25,7 +25,7 @@ tags:						#标签
 
 - 基于seq2seq的中英文翻译模型：
 
-![seq2seq](https://raw.githubusercontent.com/audier/audier.github.io/blob/master/img/seq2seq.jpg)
+![seq2seq](https://raw.githubusercontent.com/audier/audier.github.io/master/img/seq2seq.jpg)
 
 ### 1.2 seq2seq与lstm的区别
 我们可以看出lstm结构上和seq2seq的decoder端结构是一样的。实际上，他们确实是一模一样的，而他们唯一的区别在于两个结构的输入不同。
