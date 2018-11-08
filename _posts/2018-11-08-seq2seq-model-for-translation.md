@@ -11,6 +11,7 @@ tags:						#标签
     - NLP
     - 深度学习
 ---
+
 # 基于seq2seq的简易中英文翻译系统
 ## 1. 项目背景
 项目地址：[https://github.com/audier/my_deep_project/tree/master/NLP](https://github.com/audier/my_deep_project/tree/master/NLP)
@@ -20,7 +21,7 @@ tags:						#标签
 实际上，seq2seq模型和之前的lstm生成小说的模型非常相似，seq2seq多了个encoder端，decoder端只是训练的方法不同，生成输出所需初始化的参数不同。如下图所示：
 - lstm的中文小说生成模型：
 
-![lstm](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/lstm.jpg)
+![lstm](https://raw.githubusercontent.com/audier/audier.github.io/master/img/rnnet.jpg)
 
 - 基于seq2seq的中英文翻译模型：
 
