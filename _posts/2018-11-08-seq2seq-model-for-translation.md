@@ -13,21 +13,21 @@ tags:						#标签
 ---
 # 基于seq2seq的简易中英文翻译系统
 ## 1. 项目背景
-项目地址：https://github.com/audier/my_deep_project/tree/master/NLP
+项目地址：[https://github.com/audier/my_deep_project/tree/master/NLP](https://github.com/audier/my_deep_project/tree/master/NLP)
 ### 1.1 seq2seq与lstm关系
 之前我们利用lstm进行建模，设计了一个自动生成莫言小说的模型，这次想要利用rnn的特点搭建一个中英文的翻译系统。传统的RNN输入和输出长度要一致，而seq2seq在RNN的基础上进行改进，实现了变长序列的输入和输出，广泛的应用在了机器翻译、对话系统、文本摘要等领域。 
 
 实际上，seq2seq模型和之前的lstm生成小说的模型非常相似，seq2seq多了个encoder端，decoder端只是训练的方法不同，生成输出所需初始化的参数不同。如下图所示：
 - lstm的中文小说生成模型：
-![在这里插入图片描述](![lstm](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/lstm.jpg))
+![在这里插入图片描述](![lstm](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm.jpg))
 - 基于seq2seq的中英文翻译模型：
 
-![在这里插入图片描述](![seq2seq](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/seq2seq.jpg))
+![在这里插入图片描述](![seq2seq](https://github.com/audier/audier.github.io/blob/master/img/en2ch/seq2seq.jpg))
 
 ### 1.2 seq2seq与lstm的区别
 我们可以看出lstm结构上和seq2seq的decoder端结构是一样的。实际上，他们确实是一模一样的，而他们唯一的区别在于两个结构的输入不同。
 
-![在这里插入图片描述](![lstm](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/lstm.jpg))
+![在这里插入图片描述](![lstm](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm.jpg))
 
 - lstm结构：1.state为固定值初始化，2.input为网络的输入
 - seq2seq：2.state为encoder端编码得到的值，2.input为给定的起始输入
@@ -35,18 +35,18 @@ tags:						#标签
 ### 1.3 一些想法
 其实从另一种角度看，seq2seq和lstm可以看做完全一样的网络结构，我们既可以把seq2seq看成lstm的演化版本，也可以把lstm看成seq2seq的一部分。
 如果把lstm从中间截断，并修改下一个的输入就能得到seq2seq:
-![在这里插入图片描述](![lstm2seq](https://raw.githubusercontent.com/audier/audier.github.io/master/img/en2ch/lstm.jpg))
+![在这里插入图片描述](![lstm2seq](https://github.com/audier/audier.github.io/blob/master/img/en2ch/lstm2seq.jpg))
 
 
 ### 参考文献：
-- 论文地址：https://arxiv.org/pdf/1409.3215.pdf
-- 代码参考：https://github.com/keras-team/keras/blob/master/examples/lstm_seq2seq.py
+- 论文地址：[https://arxiv.org/pdf/1409.3215.pdf](https://arxiv.org/pdf/1409.3215.pdf)
+- 代码参考：[https://github.com/keras-team/keras/blob/master/examples/lstm_seq2seq.py](https://github.com/keras-team/keras/blob/master/examples/lstm_seq2seq.py)
 
 
 
 ## 2. 项目数据
 项目数据使用中英文翻译数据集，来实现字符级的seq2seq模型的训练。 
-该文件来自于:http://www.manythings.org/anki/
+该文件来自于:[http://www.manythings.org/anki/](http://www.manythings.org/anki/)
 
 内容如下：
 
