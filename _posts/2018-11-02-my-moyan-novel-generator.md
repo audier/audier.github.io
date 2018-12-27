@@ -8,8 +8,6 @@ header-img: img/home-bg-pic.jpg 		#这篇文章标题背景图片
 catalog: true 					# 是否归档
 tags:						#标签
     - 自然语言处理
-    - NLP
-    - 深度学习
 ---
 
 # 利用lstm进行生成莫言小说

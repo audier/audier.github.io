@@ -1,6 +1,6 @@
 # Site settings
-title: HW Blog
-SEOTitle: 洪文的博客 | HW Blog
+title: Hongwen Blog
+SEOTitle: Hongwen's blog | HW Blog
 header-img: img/home-bg-pic.jpg
 email: hit_master@163.com
 description: "不积跬步无以至千里"
@@ -22,7 +22,7 @@ RSS: false
 zhihu_username:     sunhongwen
 github_username:    audier
 #facebook_username:  baiying.qiu.7
-#jianshu_username:   e71990ada2fd
+jianshu_username:   chinatelecom08
 #twitter_username:   qiubaiying
 
 
@@ -62,13 +62,13 @@ kramdown:
 
 # Gitalk
 gitalk:
-  enable: true    #是否开启Gitalk评论
-  clientID: d210871bea579a760769                            #生成的clientID
-  clientSecret: a9609b36817032c93aaa4401ce61755a796c78d6    #生成的clientSecret
-  repo: audier.github.io    #仓库名称
-  owner: audier    #github用户名
+  enable: true    
+  clientID: d210871bea579a760769                            
+  clientSecret: a9609b36817032c93aaa4401ce61755a796c78d6 
+  repo: audier.github.io    
+  owner: audier    
   admin: audier
-  distractionFreeMode: true #是否启用类似FB的阴影遮罩
+  distractionFreeMode: true 
 
 
 # 统计
