@@ -1,7 +1,7 @@
 ---
 layout:     post   				    # 使用的布局（不需要改）
-title:      基于深度学习的中文语音识别系统   # 标题 
-subtitle:   a chinese asrt			#副标题
+title:      基于transformer 的翻译系统   # 标题 
+subtitle:   transformer tutorial			#副标题
 date:       2018-12-30 				# 时间
 author:     Sun Hongwen						# 作者
 header-img: img/home-bg-pic.jpg 	#这篇文章标题背景图片
@@ -225,7 +225,8 @@ next(batch)
 ## 2. 构建模型
 模型结构如下：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219205712939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/transformer.jpg)
+
 其中主要建模组件下面都会给出。
 
 论文：https://arxiv.org/abs/1706.03762
@@ -241,7 +242,7 @@ import tensorflow as tf
 #### layer norm层
 在框框的位置。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219205934968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/normlayer.jpg)
 
 ```python
 def normalize(inputs, 
@@ -277,7 +278,7 @@ def normalize(inputs,
 #### embedding层
 这里值得一提的是本文的position encoding也是用embedding层表示，原论文中说用公式或者embedding层自己训练都可以。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219210218841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/embedding.jpg)
 
 
 
@@ -360,15 +361,15 @@ def embedding(inputs,
 #### multihead层
 是self-attention的核心思想，务必把原理搞清楚。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219210439231.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_math.jpg)
 
 意思是自己跟自己做注意力机制，但是在这之前通过线性变换，将原来的输入映射到8个不同的空间去计算，最后再接到一起。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219210311749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_math.jpg)
 
 该层实现了下面功能，给谷歌鼓掌：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219210331450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_struc.jpg)
 
 ```python
 def multihead_attention(key_emb,
@@ -467,7 +468,6 @@ def multihead_attention(key_emb,
 #### feedforward
 
 两层全连接，用卷积模拟加速运算，也可以使用dense层。你会发现这个框架所需组件全部凑齐了，可以召唤神龙了。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219210657993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
 
 ```python
 def feedforward(inputs, 
@@ -550,7 +550,7 @@ def label_smoothing(inputs, epsilon=0.1):
 ### 2.2 搭建模型
 再看一次模型，我们发现里面的组件我们都已经构建好了。
 按照这个结构搭建模型就可以啦！
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181219211230579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoaW5hdGVsZWNvbTA4,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/marked_transformer.jpg)
 代码如下：
 
 
@@ -835,8 +835,6 @@ with tf.Session() as sess:
     输入测试拼音: exit
 
 结果果然不错，训练速度也是比基于rnn的encoder decoder结构快很多，不得不说谷歌真棒啊。
-
-> 转载请注明出处：https://blog.csdn.net/chinatelecom08    
 
 同学们喜欢的话给我项目点个星吧！
 https://github.com/audier
