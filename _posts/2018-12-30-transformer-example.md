@@ -12,21 +12,23 @@ tags:								#标签
 
 # 基于transformer 的翻译系统
 
-论文：https://arxiv.org/abs/1706.03762
+[论文：attention is all you need](https://arxiv.org/abs/1706.03762)
 
-项目地址：https://github.com/audier/my_deep_project/tree/master/NLP/4.transformer
+[项目地址：audier/my_deep_project](https://github.com/audier/my_deep_project/tree/master/NLP/4.transformer)
 
 本文实现了一个基于自注意力机制的翻译系统。注意力机制是机制是这两年比较火的方向，其中去年提出的自注意力机制更是各位大神的宠儿，网上可读性较高的代码有一点点不完美的地方就是mask没有发挥作用，最近也在做翻译系统，于是整理本文分享思路。
 
-本文代码参考网上可读性较好的项目：https://github.com/Kyubyong/transformer
+本文代码参考网上可读性较好的项目：[Kyubyong/transformer](https://github.com/Kyubyong/transformer)
 
 但是作者在key_mask和queries_mask中有一定的失误，本文修改了对应的模型和multihead层，使该功能正常。
 
 
 ## 1. 数据处理
-本文使用数据：https://github.com/audier/my_deep_project/tree/master/NLP/4.transformer
+本文使用数据来自：[hongwen transformer](https://github.com/audier/my_deep_project/tree/master/NLP/4.transformer)
+
 - 读取数据
 - 分别保存为inputs，outputs
+
 
 
 ```python
@@ -51,6 +53,8 @@ for line in tqdm(data[:10000]):
     
 
 - 查看数据格式
+
+
 ```python
 print(inputs[:10])
 ```
@@ -63,8 +67,10 @@ print(inputs[:10])
 print(outputs[:10])
 ```
 
+
     ['嗨', '你好', '你用跑的', '等等', '你好', '让我来', '我赢了', '不会吧', '乾杯', '他跑了']
     
+
 
 ### 1.1 英文分词
 我们将英文用空格隔开即可，但是需要稍微修改一下，将大写字母全部用小写字母代替。在上文中使用`.lower`进行了替代。
@@ -93,26 +99,32 @@ print(inputs[:10])
 
 ### 1.2 中文分词
 - 中文分词选择结巴分词工具。
+
 ```py
 import jieba
 outputs = [[char for char in jieba.cut(line) if char != ' '] for line in outputs]
 ```
 - 也可以用hanlp。
+
 ```py
 from pyhanlp import *
 outputs = [[term.word for term in HanLP.segment(line) if term.word != ' '] for line in outputs]
 ```
 - 或者按字分词？
 
+
 - 最终我选择了结巴分词
+
 ```python
 import jieba
 jieba_outputs = [[char for char in jieba.cut(line) if char != ' '] for line in outputs[-10:]]
 print(jieba_outputs)
 ```
 
+
     [['你', '不應', '該', '去', '那裡', '的'], ['你', '以前', '吸煙', '，', '不是', '嗎'], ['你現', '在', '最好', '回家'], ['你', '今天', '最好', '不要', '出門'], ['你', '滑雪', '比', '我', '好'], ['你', '正在', '把', '我', '杯子', '里', '的', '东西', '喝掉'], ['你', '并', '不', '满意', '，', '对', '吧'], ['你', '病', '了', '，', '该', '休息', '了'], ['你', '很', '勇敢', '，', '不是', '嗎'], ['你', '的', '意志力', '很強']]
     
+
 
 
 ```python
@@ -125,6 +137,7 @@ outputs = [[char for char in jieba.cut(line) if char != ' '] for line in tqdm(ou
 ### 1.3 生成字典
 
 将英文和中文映射为id
+
 
 ```python
 def get_vocab(data, init=['<PAD>']):
@@ -141,6 +154,7 @@ encoder_vocab = get_vocab(inputs, init=SOURCE_CODES)
 decoder_vocab = get_vocab(outputs, init=TARGET_CODES)
 ```
 
+
     100%|██████████| 10000/10000 [00:00<00:00, 20585.73it/s]
     100%|██████████| 10000/10000 [00:01<00:00, 7808.17it/s]
     
@@ -156,13 +170,16 @@ print(decoder_vocab[:10])
     
 
 ### 1.4 数据生成器
-翻译系统训练所需要的数据形式，跟谷歌gnmt输入致，gnmt的原理可以参考：https://github.com/tensorflow/nmt
+
+翻译系统训练所需要的数据形式，跟谷歌gnmt输入致，gnmt的原理可以参考：[谷歌nmt系统](https://github.com/tensorflow/nmt)
+
 大概是:
 - 编码器输入：I am a student
 - 解码器输入：(go) Je suis étudiant
 - 解码器输出：Je suis étudiant (end)
 
 即解码器输入起始部分有个开始符号，输出句尾有个结束符号。
+
 ```python
 encoder_inputs = [[encoder_vocab.index(word) for word in line] for line in inputs]
 decoder_inputs = [[decoder_vocab.index('<GO>')] + [decoder_vocab.index(word) for word in line] for line in outputs]
@@ -223,6 +240,7 @@ next(batch)
 
 
 ## 2. 构建模型
+
 模型结构如下：
 
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/transformer.jpg)
@@ -230,16 +248,21 @@ next(batch)
 其中主要建模组件下面都会给出。
 
 论文：https://arxiv.org/abs/1706.03762
+
 关于论文讲解：百度即可，对着原论文代码一起看。
+
 我个人觉得结合代码就会很好理解。
+
 ```python
 import tensorflow as tf
 ```
 
 ### 2.1 构造建模组件
+
 下面代码实现了图片结构中的各个功能组件。
 
 #### layer norm层
+
 在框框的位置。
 
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/normlayer.jpg)
@@ -276,6 +299,7 @@ def normalize(inputs,
 ```
 
 #### embedding层
+
 这里值得一提的是本文的position encoding也是用embedding层表示，原论文中说用公式或者embedding层自己训练都可以。
 
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/embedding.jpg)
@@ -358,10 +382,14 @@ def embedding(inputs,
     return outputs
 ```
 
+
 #### multihead层
+
 是self-attention的核心思想，务必把原理搞清楚。
 
+
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_math.jpg)
+
 
 意思是自己跟自己做注意力机制，但是在这之前通过线性变换，将原来的输入映射到8个不同的空间去计算，最后再接到一起。
 
@@ -370,6 +398,7 @@ def embedding(inputs,
 该层实现了下面功能，给谷歌鼓掌：
 
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_struc.jpg)
+
 
 ```python
 def multihead_attention(key_emb,
@@ -467,7 +496,9 @@ def multihead_attention(key_emb,
 
 #### feedforward
 
+
 两层全连接，用卷积模拟加速运算，也可以使用dense层。你会发现这个框架所需组件全部凑齐了，可以召唤神龙了。
+
 
 ```python
 def feedforward(inputs, 
@@ -548,9 +579,13 @@ def label_smoothing(inputs, epsilon=0.1):
 ```
 
 ### 2.2 搭建模型
+
 再看一次模型，我们发现里面的组件我们都已经构建好了。
+
 按照这个结构搭建模型就可以啦！
+
 ![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/marked_transformer.jpg)
+
 代码如下：
 
 
