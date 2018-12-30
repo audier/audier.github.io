@@ -29,21 +29,6 @@ tags:								#标签
 - 基于CBHG的语言模型：[基于CBHG的语言模型实现](https://blog.csdn.net/chinatelecom08/article/details/85048019)
 
 
-
-- 声学模型
-	- GRU-CTC
-	- DFCNN
-	- DFSMN
-- 语言解码模型
-	- n-gram
-	- CBHG
-	- transformer
-- 数据集450小时
-	- thchs-30
-	- aishell
-	- primewords
-	- st-cmd
-
  
 ## 1. 声学模型
 声学模型目前开源了部分示例模型，后期将不定期更新一些模型。
