@@ -393,7 +393,7 @@ def embedding(inputs,
 
 意思是自己跟自己做注意力机制，但是在这之前通过线性变换，将原来的输入映射到8个不同的空间去计算，最后再接到一起。
 
-![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead_math.jpg)
+![在这里插入图片描述](https://raw.githubusercontent.com/audier/audier.github.io/master/img/multihead.jpg)
 
 该层实现了下面功能，给谷歌鼓掌：
 
